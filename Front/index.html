@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script src="script.js"></script>
+    <title>Cadastro de Clientes</title>
+</head>
+
+<body>
+    <div class="p-5 container t">
+        <h1><i class="bi bi-people-fill"> </i>Cadastro de Clientes</h1>
+        <br>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Nome completo">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" autocomplete="off" id="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="cep">CEP</label>
+                    <input class="form-control" name="cep" type="text" id="cep" value="" size="10" maxlength="8"
+                        onblur="pesquisacep(this.value);">
+                </div>
+                <div class="form-group col-md-10">
+                    <label for="rua">Endereço</label>
+                    <input type="text" class="form-control" id="rua" placeholder="Rua dos Bobos, nº 0">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" class="form-control" id="complemento"
+                        placeholder="Apartamento, hotel, casa, etc.">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="numero">Numero</label>
+                    <input type="text" class="form-control" id="numero">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" class="form-control" id="bairro">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" class="form-control" id="cidade">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="uf">Estado</label>
+                    <select id="uf" class="form-control">
+                        <option selected>Escolher...</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+            </div>
+            <button type=" submit" class="btn btn-primary font-weight-bold" id="addBtn" onclick="novoCliente()"><i
+                    class="bi bi-check2-square">
+                </i>Cadastrar</button>
+        </form>
+    </div>
+    <div class="container">
+        <table class="table text-center" id="listaClientes">
+            <thead>
+                <tr>
+                    <th scope="col"># ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal fade bd-example-modal-lg" id="modalEditar" tabindex="-1" role="dialog"
+            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="container">
+                        <div class="modal-header">
+                            <h2 class="m-3"><i class="bi bi-person-fill-gear"> </i>Editar Cadastro</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                                <br>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-group col-md-1">
+                                        <label for="idmodal">#ID</label>
+                                        <input type="text" class="form-control" id="idmodal" disabled>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="nomemodal">Nome</label>
+                                        <input type="text" class="form-control" id="nomemodal"
+                                            placeholder="Nome completo">
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label for="emailmodal">Email</label>
+                                        <input type="email" class="form-control" id="emailmodal" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="cepmodal">CEP</label>
+                                        <input class="form-control" name="cep" type="text" id="cepmodal" value=""
+                                            size="10" maxlength="8" onblur="pesquisacepmodal(this.value);">
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <label for="ruamodal">Endereço</label>
+                                        <input type="text" class="form-control" id="ruamodal"
+                                            placeholder="Rua dos Bobos, nº 0">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="complementomodal">Complemento</label>
+                                        <input type="text" class="form-control" id="complementomodal"
+                                            placeholder="Apartamento, hotel, casa, etc.">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="numeromodal">Numero</label>
+                                        <input type="text" class="form-control" id="numeromodal">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="bairromodal">Bairro</label>
+                                        <input type="text" class="form-control" id="bairromodal">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="cidademodal">Cidade</label>
+                                        <input type="text" class="form-control" id="cidademodal">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="ufmodal">Estado</label>
+                                        <select id="ufmodal" class="form-control">
+                                            <option selected>Escolher...</option>
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type=" submit" class="btn btn-primary font-weight-bold m-3" data-dismiss="modal" onclick="editarCliente()"><i
+                                    class="bi bi-arrow-down-up"> </i> Salvar </button>
+                            <button type=" submit" class="btn btn-primary font-weight-bold m-3" data-dismiss="modal"><i
+                                    class="bi bi-box-arrow-left"> </i>Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
